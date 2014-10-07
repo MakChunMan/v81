@@ -9,7 +9,7 @@
  *  
  *  JASON: 
  *      2014-10-07 	- add relate /v81/ path to function colorThemePreview (Search /v81/ for all changes/
- *      						- [IMPORTANT] Demo DOES NOT WORK ANYMORE
+ *      						- Demo DOES NOT WORK ANYMORE
  */
 
 var App = function() {

@@ -93,7 +93,7 @@ include("zh_.php");
         <script src="../js/app.js"></script>
 
         <!-- Load and execute javascript code used only in this page -->
-        <script src="/v81/js/v81/validation/login.js"></script>
+        <script src="../js/v81/validation/login.js"></script>
         <script>$(function(){ ReadyLogin.init(); });</script>
 	<!-- Init Load -->
 		<script>

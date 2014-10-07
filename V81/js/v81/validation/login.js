@@ -6,7 +6,6 @@
 
 $.validator.setDefaults({
 		submitHandler: function() {
-			alert('loading');
 			$.ajax({
 				url: "http://127.0.0.1/do/PAGE/DO_LOGIN",
 				data: $('#form-login').serialize(),
