@@ -3,6 +3,7 @@
  *  Date     : 2014-10-13
  *  Description: Custom javascript code used in Forget Password page
  */
+<? include("../../../zh/zh_.php"); ?>
 
 $.validator.setDefaults({
 		submitHandler: function() {
@@ -17,7 +18,7 @@ $.validator.setDefaults({
 					$('#error-msg').html(html.replace("Error:","")+"<br/>");
 					$('#reminder-email').val("");
 				} else {
-					$('#form-reminder').html(html.replace("Msg:",""));
+					$('#form-reminder').html(html.replace("Msg:","")+"<br/>");
 				}
 			});
 		}
@@ -49,7 +50,7 @@ var ReadyReminder = function() {
                     }
                 },
                 messages: {
-                    'reminder-email': 'Please enter your account\'s email'
+                    'reminder-email': "<?=$MSG["zh"]["Missing Email"]?>"
                 }
             });
         }

@@ -3,12 +3,13 @@
  *  Date     : 2014-01-06
  *  Description: Custom javascript code used in Login page
  */
-
+<? include("../../../zh/zh_.php"); ?>
 $.validator.setDefaults({
 		submitHandler: function() {
 			$.ajax({
 				url: "http://127.0.0.1/do/PAGE/DO_LOGIN",
 				data: $('#form-login').serialize(),
+                type: "post",				
 				cache: false
 			}).done(function( html ) {
 				if($.trim(html).match("^Error")){
@@ -52,10 +53,10 @@ var ReadyLogin = function() {
                     }
                 },
                 messages: {
-                    'login-email': 'Please enter your account\'s email',
+                    'login-email': "<?=$MSG["zh"]["Missing Email"]?>",
                     'login-password': {
-                        required: 'Please provide your password',
-                        minlength: 'Your password must be at least 5 characters long'
+                        required: "<?=$MSG["zh"]["Missing Password"]?>",
+                        minlength: '<?=$MSG["zh"]["Length Password"]?>'
                     }
                 }
             });
