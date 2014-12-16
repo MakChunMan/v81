@@ -106,7 +106,7 @@ function topRefresh(){
 /*******************************************
 //Save My Module (Top) - Create Dummy Module
 /*******************************************/
->>>>>>> refs/remotes/origin/master
+
 function topSave(){
 	alert('topSave');
 	$.ajax({
