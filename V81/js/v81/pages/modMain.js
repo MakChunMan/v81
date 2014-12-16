@@ -1,10 +1,18 @@
 //TODO: Move max no of module (6) as a variable
 
+/***************************************************
+// Click 
+***************************************************/
+
+//(1) Select the module Template from the template zone
+//(2) Draw Module Icon to MyModule Zone
+//(3) Load Module details edit from 
 $('.moduleWidget').click(function(){
 	var attrTypeName = $('#'+this.id).attr("typename");
 	var modEditPath = "";
 	//alert(attrTypeName);
 	$("#module"+(currentAdd+1)).html($('#'+this.id).html()+"<input type=hidden name=\"newModule"+(currentAdd+1)+"\" value=\""+attrTypeName+"\">");
+	$("#module"+(currentAdd+1)).addClass("clickbind");
 	$("#module"+(currentAdd+1)).find(".info").remove();
 	$("#module"+(currentAdd+1)).addClass("text-center").css("padding","5px");
 	addSelectBorder($("#module"+(currentAdd+1)),true);
@@ -34,8 +42,12 @@ $('.moduleWidget').click(function(){
 			}
 		});
 	}
+	bindClickEvent();
 });
 
+/*********************************************
+//Misc function
+/*********************************************/
 var addBtnStr = "<button class=\"btn btn-lg btn-success\" onClick=\"javascript:$('#moduleTemplateRow').show();clearAllBorder();$('#moduleEditRow').hide();return false;\"><i class=\"fa fa-plus\"></i> Add</button>";
 var emptyStr = "<button class=\"btn btn-sm btn-default disabled\"><i class=\"fa fa-plus\"></i> Empty</button>";
 
@@ -53,11 +65,28 @@ function addSelectBorder(obj, isTrue){
 	}
 }
 
+function bindClickEvent(){
+	$(".clickbind").unbind("click");
+	$(".clickbind").click(
+			function(){
+				console.log(this);
+				alert($(this).attr("id"));
+	});
+}
+
+/*******************************************
+//Page Init
+/*******************************************/
 //Hide Save alert
 $('#save_alert').hide();
 //Load the module list
 topRefresh();
+bindClickEvent();
 
+
+/*******************************************
+//Reload My Module (Top)
+/*******************************************/
 function topRefresh(){
 	$.ajax({
 		url: "/do/MOD/MOD_LIST_MOD",
@@ -74,6 +103,10 @@ function topRefresh(){
 	});
 }
 
+/*******************************************
+//Save My Module (Top) - Create Dummy Module
+/*******************************************/
+>>>>>>> refs/remotes/origin/master
 function topSave(){
 	alert('topSave');
 	$.ajax({
