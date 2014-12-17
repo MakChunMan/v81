@@ -22,14 +22,78 @@ $('.moduleWidget').click(function(){
 		currentAdd++;
 	}
 	$('#moduleTemplateRow').hide();	//Hide the module and Template
-	
-	if(attrTypeName == 'modAboutPage'){
+	loadEditPage(attrTypeName,'');
+	bindClickEvent();
+});
+
+/*********************************************
+//Misc function
+/*********************************************/
+var addBtnStr = "<button class=\"btn btn-lg btn-success\" onClick=\"javascript:$('#moduleTemplateRow').show();clearAllBorder();$('#moduleEditRow').hide();return false;\"><i class=\"fa fa-plus\"></i> Add</button>";
+var emptyStr = "<button class=\"btn btn-sm btn-default disabled\"><i class=\"fa fa-plus\"></i> Empty</button>";
+
+function clearAllBorder(){
+	console.log('clearAllBorder()');
+	clearAllBg();
+	for(x = 1; x< 6 ;x++){
+		addSelectBorder($("#module"+(x)), false);
+	}
+}
+
+function clearAllBg(){
+	console.log('clearAllBg');
+	for(x = 1; x< 6 ;x++){
+		addSelectBg($("#module"+(x)), false);
+	}
+}
+
+function addSelectBorder(obj, isTrue){
+	if(isTrue){
+		obj.css("border","2px dashed grey");
+	} else {
+		obj.css("border","");
+	}
+}
+
+function addSelectBg(obj, isTrue){
+	if(isTrue){
+		obj.css("background-color","PINK");
+	} else {
+		
+		obj.css("background-color","");
+	}
+}
+
+function bindClickEvent(){
+	$(".clickbind").unbind("click");
+	$(".clickbind").click(
+			function(){
+				var thisid = $(this).attr("id");
+				var attrTypeName = $('#'+thisid).attr("typename");
+				var guid = $("input[name='"+thisid+"']").val();
+				clearAllBorder();
+				loadEditPage(attrTypeName, guid);
+				addSelectBorder($('#'+thisid), true)
+				addSelectBg($('#'+thisid), true);
+				console.log(this);
+				$('#moduleEditRow').hide();
+				$('#moduleTemplateRow').hide();
+	});
+}
+
+//AJAX Load Edit page (Different Module may have different edit page which controled by attrTypeName
+//Add different attrTypeName and modEditPage here is new Module is added
+function loadEditPage(attrTypeName, guid){
+	var modEditPath = "";
+	if(attrTypeName=== undefined)
+		return;
+	if(attrTypeName.toUpperCase() == 'ModAboutPage'.toUpperCase()){
 		modEditPath = "MOD_EDIT_ABOUTUS";
 	}
-	if(attrTypeName !=""){
+	if(attrTypeName != ""){
 		//Display appropriate edit
 		$.ajax({
-			url: "/do/MOD/"+modEditPath,
+			url: "/do/MOD/"+modEditPath+"/"+guid+"/",
 			type: "post",
 			cache: false
 		}).done(function( html ) {
@@ -42,36 +106,6 @@ $('.moduleWidget').click(function(){
 			}
 		});
 	}
-	bindClickEvent();
-});
-
-/*********************************************
-//Misc function
-/*********************************************/
-var addBtnStr = "<button class=\"btn btn-lg btn-success\" onClick=\"javascript:$('#moduleTemplateRow').show();clearAllBorder();$('#moduleEditRow').hide();return false;\"><i class=\"fa fa-plus\"></i> Add</button>";
-var emptyStr = "<button class=\"btn btn-sm btn-default disabled\"><i class=\"fa fa-plus\"></i> Empty</button>";
-
-function clearAllBorder(){
-	for(x = 1; x< 6 ;x++){
-		addSelectBorder($("#module"+(x)), false);
-	}
-}
-
-function addSelectBorder(obj, isTrue){
-	if(isTrue){
-		obj.css("border","2px dashed grey");
-	} else {
-		obj.css("border","");
-	}
-}
-
-function bindClickEvent(){
-	$(".clickbind").unbind("click");
-	$(".clickbind").click(
-			function(){
-				console.log(this);
-				alert($(this).attr("id"));
-	});
 }
 
 /*******************************************
