@@ -76,9 +76,8 @@ function bindClickEvent(){
 				addSelectBorder($('#'+thisid), true)
 				addSelectBg($('#'+thisid), true);
 				console.log(this);
-				alert('hi2');
 				$('#moduleEditRow').hide();
-				alert('hi');
+				$('#moduleTemplateRow').hide();
 	});
 }
 
