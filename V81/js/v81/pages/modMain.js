@@ -33,7 +33,6 @@ var addBtnStr = "<button class=\"btn btn-lg btn-success\" onClick=\"javascript:$
 var emptyStr = "<button class=\"btn btn-sm btn-default disabled\"><i class=\"fa fa-plus\"></i> Empty</button>";
 
 function clearAllBorder(){
-	console.log('clearAllBorder()');
 	clearAllBg();
 	for(x = 1; x< 6 ;x++){
 		addSelectBorder($("#module"+(x)), false);
@@ -41,7 +40,6 @@ function clearAllBorder(){
 }
 
 function clearAllBg(){
-	console.log('clearAllBg');
 	for(x = 1; x< 6 ;x++){
 		addSelectBg($("#module"+(x)), false);
 	}
@@ -75,7 +73,6 @@ function bindClickEvent(){
 				loadEditPage(attrTypeName, guid);
 				addSelectBorder($('#'+thisid), true)
 				addSelectBg($('#'+thisid), true);
-				console.log(this);
 				$('#moduleEditRow').hide();
 				$('#moduleTemplateRow').hide();
 	});
@@ -89,6 +86,8 @@ function loadEditPage(attrTypeName, guid){
 		return;
 	if(attrTypeName.toUpperCase() == 'ModAboutPage'.toUpperCase()){
 		modEditPath = "MOD_EDIT_ABOUTUS";
+	} else if(attrTypeName.toUpperCase() == 'ModForm'.toUpperCase()){
+		modEditPath = "MOD_EDIT_FORM";
 	}
 	if(attrTypeName != ""){
 		//Display appropriate edit
