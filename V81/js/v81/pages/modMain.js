@@ -1,5 +1,6 @@
 //TODO: Move max no of module (6) as a variable
 
+var maxModule = 6;
 /***************************************************
 // Click 
 ***************************************************/
@@ -16,7 +17,7 @@ $('.moduleWidget').click(function(){
 	$("#module"+(currentAdd+1)).find(".info").remove();
 	$("#module"+(currentAdd+1)).addClass("text-center").css("padding","5px");
 	addSelectBorder($("#module"+(currentAdd+1)),true);
-	if(currentAdd<5){
+	if(currentAdd< (maxModule-1)){
 		$("#module"+(currentAdd+2)).html(addBtnStr);
 		$('#save_alert').show();
 		currentAdd++;
@@ -29,18 +30,18 @@ $('.moduleWidget').click(function(){
 /*********************************************
 //Misc function
 /*********************************************/
-var addBtnStr = "<button class=\"btn btn-lg btn-success\" onClick=\"javascript:$('#moduleTemplateRow').show();clearAllBorder();$('#moduleEditRow').hide();return false;\"><i class=\"fa fa-plus\"></i> Add</button>";
+var addBtnStr = "<button class=\"btn btn-lg btn-success\" onClick=\"javascript:$('#moduleTemplateRow').show();clearAllBorder();$('#moduleEditRow').hide();$('#topDeleteBtn').hide();return false;\"><i class=\"fa fa-plus\"></i> Add</button>";
 var emptyStr = "<button class=\"btn btn-sm btn-default disabled\"><i class=\"fa fa-plus\"></i> Empty</button>";
 
 function clearAllBorder(){
 	clearAllBg();
-	for(x = 1; x< 6 ;x++){
+	for(x = 1; x< maxModule ;x++){
 		addSelectBorder($("#module"+(x)), false);
 	}
 }
 
 function clearAllBg(){
-	for(x = 1; x< 6 ;x++){
+	for(x = 1; x< maxModule ;x++){
 		addSelectBg($("#module"+(x)), false);
 	}
 }
@@ -57,11 +58,11 @@ function addSelectBg(obj, isTrue){
 	if(isTrue){
 		obj.css("background-color","PINK");
 	} else {
-		
 		obj.css("background-color","");
 	}
 }
 
+var highlightIdx = -1;
 function bindClickEvent(){
 	$(".clickbind").unbind("click");
 	$(".clickbind").click(
@@ -73,8 +74,9 @@ function bindClickEvent(){
 				loadEditPage(attrTypeName, guid);
 				addSelectBorder($('#'+thisid), true)
 				addSelectBg($('#'+thisid), true);
-				$('#moduleEditRow').hide();
 				$('#moduleTemplateRow').hide();
+				$('#topDeleteBtn').show();				//Show delete button when select a module is selected
+				highlightIdx = $(this).attr("id").replace("module","");
 	});
 }
 
@@ -132,6 +134,7 @@ function topRefresh(){
 		} else {
 			$('#moduleListForm').html(html);
 			$('#save_alert').hide();
+			$('#topDeleteBtn').hide();				//Show delete button when select a module is selected
 		}
 	});
 }
@@ -141,7 +144,6 @@ function topRefresh(){
 /*******************************************/
 
 function topSave(){
-	alert('topSave');
 	$.ajax({
 		url: "/do/MOD/MOD_SAVE",
 		type: "post",
@@ -156,4 +158,25 @@ function topSave(){
 			$('#save_alert').hide();
 		}
 	});
+}
+}
+
+/*******************************************
+//Delete My Module (Top) - Delete Dummy Module
+/*******************************************/
+
+function topDelete(){
+	if(document.getElementsByName("newModule"+highlightIdx).length > 0 ){
+		$("#module"+highlightIdx).html(addBtnStr);
+		$("#module"+highlightIdx).removeClass("clickbind");
+		$("#module"+highlightIdx).unbind("click");
+		if(highlightIdx < maxModule){
+			$("#module"+ eval(highlightIdx + "+1")).html(emptyStr);
+		}
+		clearAllBorder();
+	} else {
+		alert("old");
+	}
+	currentAdd--;
+	bindClickEvent();
 }
