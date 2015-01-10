@@ -1,5 +1,3 @@
-//TODO: Move max no of module (6) as a variable
-
 var maxModule = 6;
 /***************************************************
 // Click 
@@ -117,7 +115,7 @@ $('#save_alert').hide();
 //Load the module list
 topRefresh();
 bindClickEvent();
-
+$('#moduleEditRow').hide();	
 
 /*******************************************
 //Reload My Module (Top)
@@ -132,6 +130,7 @@ function topRefresh(){
 			// Server side validation and display error msg
 			//$('#error-msg').html(html.replace("Error:","")+"<br/>");
 		} else {
+			
 			$('#moduleListForm').html(html);
 			$('#save_alert').hide();
 			$('#topDeleteBtn').hide();				//Show delete button when select a module is selected
@@ -159,7 +158,7 @@ function topSave(){
 		}
 	});
 }
-}
+
 
 /*******************************************
 //Delete My Module (Top) - Delete Dummy Module
@@ -175,7 +174,22 @@ function topDelete(){
 		}
 		clearAllBorder();
 	} else {
-		alert("old");
+		if(document.getElementsByName("module"+highlightIdx).length > 0){
+			alert(document.getElementsByName("module"+highlightIdx)[0].value);
+			$.ajax({
+				url: "/do/MOD/DO_DEL_MOD/"+document.getElementsByName("module"+highlightIdx)[0].value+"/"+$('#module'+highlightIdx).attr("typename"),
+				type: "post",
+				cache: false
+			}).done(function( html ) {
+				if($.trim(html).match("^Error")){
+					// Server side validation and display error msg
+					//$('#error-msg').html(html.replace("Error:","")+"<br/>");
+				} else {
+					topRefresh();
+					$('#save_alert').hide();
+				}
+			});
+		}
 	}
 	currentAdd--;
 	bindClickEvent();
