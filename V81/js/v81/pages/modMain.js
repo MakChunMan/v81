@@ -26,6 +26,18 @@ $('.moduleWidget').click(function(){
 });
 
 /*********************************************
+Upload button onclick listen
+/*********************************************/
+function uploadOnClick(reponseId, modtype){
+	//$('#file-1a').val("");
+	$('#file-1a').fileinput('clear');
+	workingImage=reponseId;
+	workingModTypeForImage = modtype;
+	$('#modal-upload').modal('show');
+	return false;
+}
+
+/*********************************************
 //Misc function
 /*********************************************/
 var addBtnStr = "<button class=\"btn btn-lg btn-success\" onClick=\"javascript:$('#moduleTemplateRow').show();clearAllBorder();$('#moduleEditRow').hide();$('#topDeleteBtn').hide();return false;\"><i class=\"fa fa-plus\"></i> Add</button>";

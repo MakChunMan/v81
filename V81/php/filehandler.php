@@ -1,3 +1,4 @@
+<? include ("include.php"); ?>
 <?
 //V81 filehandler.php
 /****
@@ -6,12 +7,14 @@ Input Param:
     $_POST['modtype']
 
 Usage: 
-1.  AboutUs Images --- modtype = 'ABT'
-
+1.  AboutUs Images --- modtype = 'ABT_'
+2.  Icon for module --- modtype = 'ICN_'
+2.  Background for module --- modtype = 'BGD_'
 ***/
 
 //Setting parameter: tmp upload path
-$target_dir = "../../userfiles/tmp/";
+//$target_dir = "../userfiles/tmp/"; //Moved to configuration file
+$target_dir = $uploadpath;
 
 
 /**************************************************************/
