@@ -1,3 +1,4 @@
+<? header("Content-Type:text/html; charset=utf-8");?>
 <? 
 /** Forget Password ***/
 include("common/php_include.php");

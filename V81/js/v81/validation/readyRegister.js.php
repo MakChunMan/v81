@@ -3,11 +3,12 @@
  *  Author     : pixelcave
  *  Description: Custom javascript code used in Register page
  */
-<? include("../../../zh/zh_.php"); ?>
+ <? header("Content-Type:text/html; charset=utf-8");?>
+ <? include("../../../zh/zh_.php"); ?>
 $.validator.setDefaults({
         submitHandler: function() {
             $.ajax({
-                url: "http://127.0.0.1/do/PAGE/DO_REGISTER",
+                url: "/do/PAGE/DO_REGISTER",
                 data: $('#form-register').serialize(),
                 type: "post",                
                 cache: false

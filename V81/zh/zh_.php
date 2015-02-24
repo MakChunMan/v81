@@ -1,7 +1,8 @@
-﻿<?
+<?php
 //Common
 $PATH["zh"]["static_path"] = "/v81";
 $PATH["zh"]["full_url_path"] = "http://127.0.0.1";
+//$PATH["zh"]["full_url_path"] = "http://www.buybuymeat.net";
 //Login Page
 $MSG["zh"]["Please Login"] = "客戶登入";
 $MSG["zh"]["Your password.."] = "密碼";

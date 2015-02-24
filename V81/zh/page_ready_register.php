@@ -1,3 +1,4 @@
+<? header("Content-Type:text/html; charset=utf-8");?>
 <?
 /** Register Page ***/
 include("common/php_include.php");

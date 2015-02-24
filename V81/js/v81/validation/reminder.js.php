@@ -3,12 +3,12 @@
  *  Date     : 2014-10-13
  *  Description: Custom javascript code used in Forget Password page
  */
+ <? header("Content-Type:text/html; charset=utf-8");?>
 <? include("../../../zh/zh_.php"); ?>
-
 $.validator.setDefaults({
 		submitHandler: function() {
 			$.ajax({
-				url: "http://127.0.0.1/do/PAGE/DO_REMINDER",
+				url: "/do/PAGE/DO_REMINDER",
 				type: "post",
 				data: $('#form-reminder').serialize(),
 				cache: false
