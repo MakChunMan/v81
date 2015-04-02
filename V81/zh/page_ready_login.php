@@ -55,7 +55,7 @@ include("common/php_include.php");
 	<!-- Init Load -->
 		<script>
 			$.ajax({
-				url: "<?=$PATH["zh"]["full_url_path"]?>/do/PAGE/INPUT_LOGIN",
+				url: "<?=$PATH["zh"]["full_url_path"]?>/PAGE/INPUT_LOGIN.do",
 				type: "post",
 				cache: false
 			}).done(function( html ) {

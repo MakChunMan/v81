@@ -82,7 +82,7 @@ include("common/php_include.php");
         <!-- Init Load -->
         <script>
             $.ajax({
-                url: "<?=$PATH["zh"]["full_url_path"]?>/do/PAGE/INPUT_REGISTER",
+                url: "<?=$PATH["zh"]["full_url_path"]?>/PAGE/INPUT_REGISTER.do",
                 cache: false
             }).done(function( html ) {
                 $( "#form-register").html( html );

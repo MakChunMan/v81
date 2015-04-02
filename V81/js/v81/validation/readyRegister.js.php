@@ -8,7 +8,7 @@
 $.validator.setDefaults({
         submitHandler: function() {
             $.ajax({
-                url: "/do/PAGE/DO_REGISTER",
+                url: "/portal/PAGE/DO_REGISTER.do",
                 data: $('#form-register').serialize(),
                 type: "post",                
                 cache: false

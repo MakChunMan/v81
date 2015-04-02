@@ -8,7 +8,7 @@
 $.validator.setDefaults({
 		submitHandler: function() {
 			$.ajax({
-				url: "/do/PAGE/DO_REMINDER",
+				url: "/portal/PAGE/DO_REMINDER.do",
 				type: "post",
 				data: $('#form-reminder').serialize(),
 				cache: false

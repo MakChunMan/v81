@@ -7,7 +7,7 @@
 $.validator.setDefaults({
 		submitHandler: function() {
 			$.ajax({
-				url: "/do/PAGE/DO_LOGIN",
+				url: "/portal/PAGE/DO_LOGIN.do",
 				data: $('#form-login').serialize(),
                 type: "post",				
 				cache: false
@@ -16,7 +16,7 @@ $.validator.setDefaults({
 					// Server side validation and display error msg
 					$('#error-msg').html(html.replace("Error:","")+"<br/>");
 				} else {
-					self.location = "/do/PAGE/PUB_MAIN";
+					self.location = "/portal/PAGE/PUB_MAIN.do";
 				}
 			});
 		}

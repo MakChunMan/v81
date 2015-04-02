@@ -54,7 +54,7 @@ include("common/php_include.php");
             <!-- Init Load -->
         <script>
             $.ajax({
-                url: "<?=$PATH["zh"]["full_url_path"]?>/do/PAGE/INPUT_REMINDER",
+                url: "<?=$PATH["zh"]["full_url_path"]?>/PAGE/INPUT_REMINDER.do",
                 cache: false
             }).done(function( html ) {
                 $( "#form-reminder").html( html );

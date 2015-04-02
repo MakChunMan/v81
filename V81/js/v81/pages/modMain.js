@@ -104,7 +104,7 @@ function loadEditPage(attrTypeName, guid){
 	if(attrTypeName != ""){
 		//Display appropriate edit
 		$.ajax({
-			url: "/do/MOD/"+modEditPath+"/"+guid+"/",
+			url: "/portal/MOD/"+modEditPath+"/"+guid+"/.do",
 			type: "post",
 			cache: false
 		}).done(function( html ) {
@@ -134,7 +134,7 @@ $('#moduleEditRow').hide();
 /*******************************************/
 function topRefresh(){
 	$.ajax({
-		url: "/do/MOD/MOD_LIST_MOD",
+		url: "/portal/MOD/MOD_LIST_MOD.do",
 		type: "post",
 		cache: false
 	}).done(function( html ) {
@@ -156,7 +156,7 @@ function topRefresh(){
 
 function topSave(){
 	$.ajax({
-		url: "/do/MOD/MOD_SAVE",
+		url: "/portal/MOD/MOD_SAVE.do",
 		type: "post",
 		data: $('#moduleListForm').serialize(),
 		cache: false
@@ -189,7 +189,7 @@ function topDelete(){
 		if(document.getElementsByName("module"+highlightIdx).length > 0){
 			alert(document.getElementsByName("module"+highlightIdx)[0].value);
 			$.ajax({
-				url: "/do/MOD/DO_DEL_MOD/"+document.getElementsByName("module"+highlightIdx)[0].value+"/"+$('#module'+highlightIdx).attr("typename"),
+				url: "/portal/MOD/DO_DEL_MOD/"+document.getElementsByName("module"+highlightIdx)[0].value+"/"+$('#module'+highlightIdx).attr("typename")+".do",
 				type: "post",
 				cache: false
 			}).done(function( html ) {
